@@ -1,5 +1,5 @@
 import { excelJson } from './excel.js';
-import { createContentTable } from './template.js';
+import { createColumnsContentTable } from './template.js';
 
 const config = {
     contentGroup: document.getElementById('content-group'),
@@ -26,5 +26,5 @@ config.appleID.addEventListener('click', (value) => {
     let appleIDJson = excelJson[value.path[0].id];
     displayNone(config.contentGroup);
     displayBlock(config.contentTable);
-    createContentTable(config.contentTable, appleIDJson);
+    createColumnsContentTable(config.contentTable, appleIDJson);
 });
