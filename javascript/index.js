@@ -1,30 +1,15 @@
 import { excelJson } from './excel.js';
-import { createColumnsContentTable } from './template.js';
+import { content, htmlField, replacing } from './config.js';
+import { createContentTableBody, createContentTableHeaders} from './template.js';
 
-const config = {
-    contentGroup: document.getElementById('content-group'),
-    contentTable: document.getElementById('content-table'),
-    content: document.getElementById('content'),
-    appleID: document.getElementById('appleID'),
-    google: document.getElementById('google'),
-}
-
-// 非表示にする
-const displayNone = (targetNode) => {
-    targetNode.classList.add('d-none');
-    targetNode.classList.remove('d-block');
-};
-
-// 表示する
-const displayBlock = (targetNode) => {
-    targetNode.classList.add('d-block');
-    targetNode.classList.remove('d-none');
-};
-
-config.appleID.addEventListener('click', (value) => {
+content.appleID.addEventListener('click', (event) => {
     // htmlのidはvalue.path[0].idに相当する
-    let appleIDJson = excelJson[value.path[0].id];
-    displayNone(config.contentGroup);
-    displayBlock(config.contentTable);
-    createColumnsContentTable(config.contentTable, appleIDJson);
+    // value.path[0].idは2023年にアクセス不可のapiが使えなくなるため
+    // event.composedPath()[0].idを使用
+    // console.log(value.path[0].id);
+    let appleIDJson = excelJson[event.composedPath()[0].id];
+    replacing.displayNone(htmlField.contentGroup);
+    replacing.displayBlock(htmlField.contentTable);
+    createContentTableHeaders(appleIDJson);
+    createContentTableBody(appleIDJson);
 });

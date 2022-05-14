@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/docomoFavicon.png" type="image/png">
     <script
@@ -24,6 +25,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer">
     </script>
+    <script src="javascript/config.js" type="module"></script>
     <script src="javascript/excel.js" type="module"></script>
     <script src="javascript/template.js" type="module"></script>
     <script src="javascript/index.js" type="module"></script>
@@ -35,11 +37,23 @@
             <div class="col">
                 <span class="navbar-brand mb-0 h1 biz-mincho fw-bold">ドコモオンライン初期設定サポートFAQ</span>
             </div>
-            <div class="col d-flex justify-content-center mx-1">
-                <input class="form-control text-light rounded-pill bg-secondary" type="file" accept=".xlsx" name="file" id="input">
+            <div class="col d-flex flex-row-reverse">
+                <div id="download-box" class="col-2 d-flex justify-content-center">
+                    <label for="input" class="text-light">
+                        <span id="download-file" class="material-symbols-outlined font-size2q5 tooltip">
+                            <span class="tooltip-text">FAQエクセルファイルを選択し、右のボタンを押下してください</span>
+                            file_download
+                        </span>
+                        <input class="form-control d-none text-light" type="file" accept=".xlsx" name="file" id="input">
+                    </label>
+                </div>
             </div>
             <div class="col-1 d-flex justify-content-center">
-                <button class="btn text-light rounded-pill bg-secondary" id="input-button">input</button>
+                <button class="btn text-light" id="input-button">
+                    <span class="material-symbols-outlined font-size2q5">
+                        input
+                    </span>
+                </button>
             </div>
             <div class="col">
                 <form class="d-flex form-floating align-items-center">
@@ -112,10 +126,17 @@
                 </div>
             </div>
             <div class="d-none" id="content-table">
+                <table class="table">
+                    <thead id="table-headers">
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
             </div>
             <div class="d-none" id="content">
             </div>
         </div>
+
     </div>
     <footer class= "bg-gray">
         <div class="d-flex justify-content-center">
