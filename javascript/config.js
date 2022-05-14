@@ -19,6 +19,13 @@ export const content = {
     google: document.getElementById('google'),
 };
 
+export const currentPage = {
+    contentGroupPage: true,
+    contentTablePage: false,
+    contentPage: false,
+    infoContentPage: false,
+}
+
 export const replacing = {
     displayNone: (targetNode) => {
         targetNode.classList.add('d-none');
@@ -27,5 +34,10 @@ export const replacing = {
     displayBlock: (targetNode) => {
         targetNode.classList.add('d-block');
         targetNode.classList.remove('d-none');
+    },
+    // 現在のページを真偽値で制御する関数https://cpoint-lab.co.jp/article/201908/11323/
+    changeCurrentPage: () => {
+        let currentPage;
+        nextPage = true;
     },
 };
