@@ -1,26 +1,25 @@
-import Content from './content.js';
+import { input } from "./config.js";
 
 // -------------excelからjsonを作成するためのイベント-----------------
-let selectedFile;
-const config = {
-    inputFile: "",
-}
+export let excelJson = {};
 
-document.getElementById('input').addEventListener("change", (event) => {
+let selectedFile;
+
+input.form.addEventListener("change", (event) => {
     selectedFile = event.target.files[0];
 });
 
-document.getElementById('button').addEventListener("click", () => {
-    if(selectedFile){
+input.button.addEventListener("click", () => {
+    if (selectedFile) {
         let fileReader = new FileReader();
         fileReader.readAsBinaryString(selectedFile);
         fileReader.onload = (event) => {
             let data = event.target.result;
-            let workbook = XLSX.read(data, {type: "binary"})
-            for(let i = 0; i < workbook.SheetNames.length; i++){
+            let workbook = XLSX.read(data, { type: "binary" });
+            for (let i = 0; i < workbook.SheetNames.length; i++) {
                 let sheetName = workbook.SheetNames[i];
                 let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-                Content.contentJson[sheetName] = rowObject;
+                excelJson[sheetName] = rowObject;
             };
         };
     };

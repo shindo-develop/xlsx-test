@@ -1,11 +1,15 @@
-import Content from './content.js';
-import {createContentTable} from './template.js';
+import { excelJson } from './excel.js';
+import { content, htmlField, replacing } from './config.js';
+import { createContentTableBody, createContentTableHeaders} from './template.js';
 
-document.getElementById('appleID').addEventListener('click', (value) => {
+content.appleID.addEventListener('click', (event) => {
     // htmlのidはvalue.path[0].idに相当する
-    let appleID = new Content(value.path[0].id);
-    let appleIDJson = Content.contentJson[appleID.contentName];
-    appleID.hideDisplay();
-    appleID.appearDisplay();
-    createContentTable(appleIDJson);
+    // value.path[0].idは2023年にアクセス不可のapiが使えなくなるため
+    // event.composedPath()[0].idを使用
+    // console.log(value.path[0].id);
+    let appleIDJson = excelJson[event.composedPath()[0].id];
+    replacing.displayNone(htmlField.contentGroup);
+    replacing.displayBlock(htmlField.contentTable);
+    createContentTableHeaders(appleIDJson);
+    createContentTableBody(appleIDJson);
 });
