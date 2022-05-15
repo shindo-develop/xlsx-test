@@ -99,11 +99,11 @@ a:hover{
     opacity: 0.9;
 }
 
-.content-numbers{
+.content-row{
     opacity: 0.8;
 }
 
-.content-numbers:hover{
+.content-row:hover{
     cursor: pointer;
     opacity: 1;
     transform: scale(1.1);

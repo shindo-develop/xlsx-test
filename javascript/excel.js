@@ -1,4 +1,4 @@
-import { input } from "./config.js";
+import { globalFunc, htmlField, input } from "./config.js";
 
 // -------------excelからjsonを作成するためのイベント-----------------
 export let excelJson = {};
@@ -21,6 +21,7 @@ input.button.addEventListener("click", () => {
                 let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
                 excelJson[sheetName] = rowObject;
             };
+            globalFunc.displayNone(htmlField.info);
         };
     };
 });
