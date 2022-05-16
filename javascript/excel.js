@@ -7,6 +7,7 @@ let selectedFile;
 
 button.selectedFile.addEventListener("change", (event) => {
     selectedFile = event.target.files[0];
+    globalFunc.clearNode(document.getElementById('download-box'));
 });
 
 button.input.addEventListener("click", () => {
@@ -23,5 +24,6 @@ button.input.addEventListener("click", () => {
             };
             globalFunc.displayNone(htmlField.info);
         };
+        globalFunc.clearNode(document.getElementById('input-box'));
     };
 });
