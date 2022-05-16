@@ -1,8 +1,10 @@
 import { excelJson } from './excel.js';
 import { content, htmlField, globalFunc } from './config.js';
-import { createContentTableBody, createContentTableHeaders} from './template.js';
+import { createContentTable} from './template.js';
 
 swal('【重要】FAQエクセルファイルを読み込んでから使用してください。\n①赤い帯のナビゲーションタグのダウンロードボタンからエクセルファイルを読み込む\n②ダウンロードボタンの横にあるインプットボタンを押す')
+
+globalFunc.returnPage();
 
 content.appleID.addEventListener('click', (event) => {
     // htmlのidはvalue.path[0].idに相当する
@@ -12,6 +14,5 @@ content.appleID.addEventListener('click', (event) => {
     let appleIDJson = excelJson[event.composedPath()[0].id];
     globalFunc.displayNone(htmlField.contentGroup);
     globalFunc.displayBlock(htmlField.contentTable);
-    createContentTableHeaders(appleIDJson);
-    createContentTableBody(appleIDJson);
+    createContentTable(appleIDJson);
 });

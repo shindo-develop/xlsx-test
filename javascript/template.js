@@ -1,10 +1,17 @@
-import { globalFunc, htmlField, tableParts } from './config.js';
+import { globalFunc, htmlField, isExport, tableParts } from './config.js';
 // 受け取ったシート名を引数にとり、テンプレートを返す
 
-export const createContentTableHeaders = (contentJson) => {
+export const createContentTable = (contentJson) => {
     // カラムごとの項目の配列
+    if(isExport.contentTable){
+        // クリア関数を呼んでisExport.contentTable = falseにする
+        clearNode(tableParts.tableHeaders);
+        clearNode(tableParts.tableBody);
+        isExport.contentTable = false;
+        globalFunc.changeCurrentPage("contentGroup", "contentTable");
+    }
     const columnsArray = Object.keys(contentJson[0]);
-    let tableHeaderRow = document.createElement('tr'); 
+    let tableHeaderRow = document.createElement('tr');
     let tableContentIndex = document.createElement('th');
     tableContentIndex.innerText = "#";
     tableHeaderRow.appendChild(tableContentIndex);
@@ -14,11 +21,6 @@ export const createContentTableHeaders = (contentJson) => {
         `;
     };
     tableParts.tableHeaders.appendChild(tableHeaderRow);
-};
-
-export const createContentTableBody = (contentJson) => {
-    // カラムごとの項目の配列
-    const columnsArray = Object.keys(contentJson[0]);
     for(let i = 1; i < contentJson.length; i++){
         let tableBodyRow = document.createElement('tr');
         tableBodyRow.classList.add('content-row');
@@ -56,9 +58,17 @@ export const createContentTableBody = (contentJson) => {
             createContentPage(contentJson[contentNumber]);
         });
     };
+    globalFunc.changeCurrentPage("contentGroup", "contentTable");
+    isExport.contentTable = true;
 };
 
 const createContentPage = (contentJson) => {
+    if(isExport.content){
+        // クリア関数を呼んでfalseを代入しelseを削除する
+        clearNode(htmlField.content);
+        isExport.content = false;
+        globalFunc.changeCurrentPage("contentTable", "content");
+    }
     const columnsArray = Object.keys(contentJson);
     let contentArray = [];
     for(let i = 0; i < columnsArray.length; i++){
@@ -80,8 +90,7 @@ const createContentPage = (contentJson) => {
                     <h3 class="card-title">${contentTitle}</h3>
                     <h6>${contentDay}</h6>
                 </div>
-                <div id="content-detail" class="mx-1>
-                    <h4 class="">簡略説明</h4>
+                <div id="content-detail" class="mx-1>                        <h4 class="">簡略説明</h4>
                     <p>${contentDetail}</p>
                 </div>
             </div>
@@ -102,4 +111,10 @@ const createContentPage = (contentJson) => {
         };
         htmlField.content.appendChild(container);
     };
+    globalFunc.changeCurrentPage("contentTable", "content");
+    isExport.content = true;
+};
+
+const clearNode = (targetNode) => {
+    targetNode.innerHTML = "";
 };

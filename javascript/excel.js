@@ -1,15 +1,15 @@
-import { globalFunc, htmlField, input } from "./config.js";
+import { globalFunc, htmlField, button } from "./config.js";
 
 // -------------excelからjsonを作成するためのイベント-----------------
 export let excelJson = {};
 
 let selectedFile;
 
-input.form.addEventListener("change", (event) => {
+button.selectedFile.addEventListener("change", (event) => {
     selectedFile = event.target.files[0];
 });
 
-input.button.addEventListener("click", () => {
+button.input.addEventListener("click", () => {
     if (selectedFile) {
         let fileReader = new FileReader();
         fileReader.readAsBinaryString(selectedFile);

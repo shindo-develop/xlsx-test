@@ -22,11 +22,11 @@ a:hover{
     opacity: 1;
 }
 
-#input-button{
+#input{
     opacity: 0.9;
 }
 
-#input-button:hover{
+#input:hover{
     cursor: pointer;
     transform: scale(1.1);
     opacity: 1;
@@ -136,4 +136,23 @@ a:hover{
 .tooltip:hover .tooltip-text {
     opacity: 1;
     visibility: visible;
+}
+
+#back-button{
+    position: absolute;
+    left: 90%;
+    top: 85%;
+    opacity: 0.8;
+    color: rgb(219, 225, 233);
+    border: #787f86 solid 0.1rem;
+    background-color: #6c757d;
+    font-size: 4rem;
+    font-weight: 900;
+    border-radius: 50%;
+}
+
+#back-button:hover{
+    opacity: 1;
+    transform: scale(1.1);
+    cursor: pointer;
 }
