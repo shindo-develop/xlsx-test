@@ -25,5 +25,6 @@ button.input.addEventListener("click", () => {
             globalFunc.displayNone(htmlField.info);
         };
         globalFunc.clearNode(document.getElementById('input-box'));
+        globalFunc.displayBlock(htmlField.contentGroup);
     };
 });
