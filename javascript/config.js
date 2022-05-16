@@ -38,6 +38,12 @@ export const globalFunc = {
         targetNode.classList.add('d-block');
         targetNode.classList.remove('d-none');
     },
+    appealStart: (targetNode) => {
+        targetNode.classList.add('appeal');
+    },
+    appealEnd: (targetNode) => {
+        targetNode.classList.remove('appeal');
+    },
     getDay: (timeNumber) => {
         const ADJUSTMENTS_NUMBER = 25750;
         const pointDay = new Date('july 1, 1970');

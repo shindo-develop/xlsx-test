@@ -8,6 +8,8 @@ let selectedFile;
 button.selectedFile.addEventListener("change", (event) => {
     selectedFile = event.target.files[0];
     globalFunc.clearNode(document.getElementById('download-box'));
+    globalFunc.appealEnd(button.selectedFile);
+    globalFunc.appealStart(button.input);
 });
 
 button.input.addEventListener("click", () => {
@@ -26,5 +28,6 @@ button.input.addEventListener("click", () => {
         };
         globalFunc.clearNode(document.getElementById('input-box'));
         globalFunc.displayBlock(htmlField.contentGroup);
+        globalFunc.appealEnd(button.input);
     };
 });
