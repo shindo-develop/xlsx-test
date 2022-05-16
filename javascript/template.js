@@ -5,8 +5,8 @@ export const createContentTable = (contentJson) => {
     // カラムごとの項目の配列
     if(isExport.contentTable){
         // クリア関数を呼んでisExport.contentTable = falseにする
-        clearNode(tableParts.tableHeaders);
-        clearNode(tableParts.tableBody);
+        globalFunc.clearNode(tableParts.tableHeaders);
+        globalFunc.clearNode(tableParts.tableBody);
         isExport.contentTable = false;
         globalFunc.changeCurrentPage("contentGroup", "contentTable");
     }
@@ -65,7 +65,7 @@ export const createContentTable = (contentJson) => {
 const createContentPage = (contentJson) => {
     if(isExport.content){
         // クリア関数を呼んでfalseを代入しelseを削除する
-        clearNode(htmlField.content);
+        globalFunc.clearNode(htmlField.content);
         isExport.content = false;
         globalFunc.changeCurrentPage("contentTable", "content");
     };
@@ -116,6 +116,4 @@ const createContentPage = (contentJson) => {
     isExport.content = true;
 };
 
-const clearNode = (targetNode) => {
-    targetNode.innerHTML = "";
-};
+

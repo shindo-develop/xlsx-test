@@ -12,7 +12,7 @@ export const button = {
 };
 
 export const isExport = {
-    info: false,
+    importantInfo: false,
     contentTable: false,
     content: false,
 }
@@ -23,7 +23,7 @@ export const tableParts = {
 };
 
 export const currentPages = {
-    info: false,
+    importantInfo: false,
     contentGroup: true,
     contentTable: false,
     content: false,
@@ -107,10 +107,10 @@ export const globalFunc = {
             };
             console.log(currentPage);
             switch (currentPage){
-                case "info":
-                    globalFunc.displayNone(htmlField.info);
+                case "importantInfo":
+                    globalFunc.displayNone(htmlField.importantInfo);
                     globalFunc.displayBlock(htmlField.contentGroup);
-                    globalFunc.changeCurrentPage("info", "contentGroup");
+                    globalFunc.changeCurrentPage("importantInfo", "contentGroup");
                     break;
                 case "contentTable":
                     globalFunc.displayNone(htmlField.contentTable);
@@ -126,5 +126,8 @@ export const globalFunc = {
                     swal('トップページです');
             };
         });
+    },
+    clearNode: (targetNode) => {
+        targetNode.innerHTML = "";
     },
 };
