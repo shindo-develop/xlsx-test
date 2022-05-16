@@ -54,20 +54,17 @@
                     input
                 </span>
             </div>
-            <div class="col">
+            <div class="col d-none" id="search-box">
                 <form class="d-flex form-floating align-items-center">
-                <select class="form-control rounded-pill mx-1" id="floatingSearch" type="search" placeholder="Search" aria-label="Search">
+                <select class="form-control contents-move-options rounded-pill mx-1" id="floatingSearch" type="search" placeholder="Search" aria-label="Search">
                         <option selected class="fw-bold bg-danger bg-gradient text-light biz-mincho opacity0q9">選択してください</option>
-                        <option value="1">重要周知</option>
-                        <option value="2">appleID</option>
-                        <option value="2">google</option>
+                        <option value="importantInfo">重要周知</option>
+                        <option value="appleID">appleID</option>
+                        <option value="google">google</option>
                     </select>
                     <label class="opacity0q5" for="floatingSearch">
                         <span>カテゴリー選択</span>
                     </label>
-                    <button class="contents-move btn btn-outline-dark border-0 mx-2 rounded-pill" role="button">
-                        <span class="font-bold text-light">Search</span><span class="material-icons text-light">search</span>
-                    </button>
                 </form>
             </div>
         </div>
@@ -133,6 +130,7 @@
                 </div>
             </div>
             <div class="d-none" id="content-table">
+                <h2 id="content-name"></h2>
                 <table class="table table-secondary table-striped">
                     <thead id="table-headers">
                     </thead>
