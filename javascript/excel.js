@@ -1,4 +1,4 @@
-import { globalFunc, htmlField, button } from "./config.js";
+import { globalFunc, htmlField, button, boxes } from "./config.js";
 
 // -------------excelからjsonを作成するためのイベント-----------------
 export let excelJson = {};
@@ -7,7 +7,7 @@ let selectedFile;
 
 button.selectedFile.addEventListener("change", (event) => {
     selectedFile = event.target.files[0];
-    globalFunc.clearNode(document.getElementById('download-box'));
+    globalFunc.clearNode(boxes.downloadBox);
     globalFunc.appealEnd(button.selectedFile);
     globalFunc.appealStart(button.input);
 });
@@ -26,8 +26,9 @@ button.input.addEventListener("click", () => {
             };
             globalFunc.displayNone(htmlField.info);
         };
-        globalFunc.clearNode(document.getElementById('input-box'));
+        globalFunc.clearNode(boxes.inputBox);
         globalFunc.displayBlock(htmlField.contentGroup);
+        globalFunc.displayBlock(boxes.searchBox);
         globalFunc.appealEnd(button.input);
     };
 });

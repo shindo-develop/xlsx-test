@@ -1,7 +1,9 @@
 import { globalFunc, htmlField, isExport, tableParts } from './config.js';
 // 受け取ったシート名を引数にとり、テンプレートを返す
 
-export const createContentTable = (contentJson) => {
+export const createContentTable = (contentName, contentJson) => {
+    let contentTitle = document.getElementById('content-name');
+    contentTitle.innerText = `${contentName}`;
     // カラムごとの項目の配列
     if(isExport.contentTable){
         // クリア関数を呼んでisExport.contentTable = falseにする
@@ -9,7 +11,7 @@ export const createContentTable = (contentJson) => {
         globalFunc.clearNode(tableParts.tableBody);
         isExport.contentTable = false;
         globalFunc.changeCurrentPage("contentGroup", "contentTable");
-    }
+    };
     const columnsArray = Object.keys(contentJson[0]);
     let tableHeaderRow = document.createElement('tr');
     let tableContentIndex = document.createElement('th');
@@ -119,5 +121,3 @@ const createContentPage = (contentJson) => {
     globalFunc.changeCurrentPage("contentTable", "content");
     isExport.content = true;
 };
-
-

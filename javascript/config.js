@@ -11,6 +11,12 @@ export const button = {
     back: document.getElementById('back-button'),
 };
 
+export const boxes = {
+    inputBox: document.getElementById('input-box'),
+    downloadBox: document.getElementById('download-box'),
+    searchBox: document.getElementById('search-box'),
+}
+
 export const isExport = {
     importantInfo: false,
     contentTable: false,
@@ -111,7 +117,6 @@ export const globalFunc = {
                 };
                 i++;
             };
-            console.log(currentPage);
             switch (currentPage){
                 case "importantInfo":
                     globalFunc.displayNone(htmlField.importantInfo);
