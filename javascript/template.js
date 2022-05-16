@@ -68,7 +68,7 @@ const createContentPage = (contentJson) => {
         clearNode(htmlField.content);
         isExport.content = false;
         globalFunc.changeCurrentPage("contentTable", "content");
-    }
+    };
     const columnsArray = Object.keys(contentJson);
     let contentArray = [];
     for(let i = 0; i < columnsArray.length; i++){
@@ -90,7 +90,8 @@ const createContentPage = (contentJson) => {
                     <h3 class="card-title">${contentTitle}</h3>
                     <h6>${contentDay}</h6>
                 </div>
-                <div id="content-detail" class="mx-1>                        <h4 class="">簡略説明</h4>
+                <div id="content-detail" class="mx-1>
+                    <h4 class="">簡略説明</h4>
                     <p>${contentDetail}</p>
                 </div>
             </div>

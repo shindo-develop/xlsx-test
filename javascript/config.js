@@ -22,11 +22,6 @@ export const tableParts = {
     tableBody: document.getElementById('table-body'),
 };
 
-export const content = {
-    appleID: document.getElementById('appleID'),
-    google: document.getElementById('google'),
-};
-
 export const currentPages = {
     info: false,
     contentGroup: true,
