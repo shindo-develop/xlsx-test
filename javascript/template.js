@@ -30,22 +30,26 @@ export const createContentTable = (contentJson) => {
         tableBodyRow.appendChild(tableBodyIndex);
         for(let j = 0; j < 3; j++){
             let tableBodyRowClass = "";
+            let contentText;
             switch(j){
                 case 0:
                     tableBodyRowClass = "content-day";
+                    contentText = globalFunc.getDay(contentJson[i][columnsArray[j]]);
                     break;
                 case 1:
                     tableBodyRowClass = "content-title";
+                    contentText = contentJson[i][columnsArray[j]];
                     break;
                 case 2:
                     tableBodyRowClass = "content-detail";
+                    contentText = contentJson[i][columnsArray[j]];
                     break;
             };
             if(contentJson[i][columnsArray[j]] === undefined){
                 contentJson[i][columnsArray[j]] = "";
             };
             tableBodyRow.innerHTML += `
-                <td class=${tableBodyRowClass}>${contentJson[i][columnsArray[j]]}</td>
+                <td class=${tableBodyRowClass}>${contentText}</td>
             `;
         };
         tableParts.tableBody.appendChild(tableBodyRow);
