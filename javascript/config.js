@@ -5,10 +5,17 @@ export const htmlField = {
     content: document.getElementById('content'),
 };
 
-export const input = {
-    form: document.getElementById('input'),
-    button: document.getElementById('input-button')
+export const button = {
+    selectedFile: document.getElementById('selected-file'),
+    input: document.getElementById('input'),
+    back: document.getElementById('back-button'),
 };
+
+export const isExport = {
+    info: false,
+    contentTable: false,
+    content: false,
+}
 
 export const tableParts = {
     tableHeaders: document.getElementById('table-headers'),
@@ -20,11 +27,11 @@ export const content = {
     google: document.getElementById('google'),
 };
 
-export const currentPage = {
-    contentGroupPage: true,
-    contentTablePage: false,
-    contentPage: false,
-    infoContentPage: false,
+export const currentPages = {
+    info: false,
+    contentGroup: true,
+    contentTable: false,
+    content: false,
 };
 
 export const globalFunc = {
@@ -36,20 +43,19 @@ export const globalFunc = {
         targetNode.classList.add('d-block');
         targetNode.classList.remove('d-none');
     },
-    // 現在のページを真偽値で制御する関数https://cpoint-lab.co.jp/article/201908/11323/
-    changeCurrentPage: () => {
-        let currentPage;
-        nextPage = true;
-    },
     getDay: (timeNumber) => {
         const ADJUSTMENTS_NUMBER = 25750;
         const pointDay = new Date('july 1, 1970');
         const pointAfterDay = Number(timeNumber) - ADJUSTMENTS_NUMBER;
         const detailDay = new Date(pointDay.setDate(pointDay.getDate() + pointAfterDay));
-        const detailDayYear = String(detailDay).substring(11, 15); 
-        const detailDayMonth = globalFunc.getMonthNumber(String(detailDay).substring(4, 7)); 
-        const detailDayDay = String(detailDay).substring(8, 10); 
+        const detailDayYear = String(detailDay).substring(11, 15);
+        const detailDayMonth = globalFunc.getMonthNumber(String(detailDay).substring(4, 7));
+        const detailDayDay = String(detailDay).substring(8, 10);
         return `${detailDayYear}/${detailDayMonth}/${detailDayDay}`;
+    },
+    changeCurrentPage: (oldPage, newPage) => {
+        currentPages[oldPage] = false;
+        currentPages[newPage] = true;
     },
     getMonthNumber: (monthString) => {
         switch(monthString){
@@ -90,5 +96,40 @@ export const globalFunc = {
                 return "12";
                 break;
         };
+    },
+    returnPage: () => {
+        button.back.addEventListener('click', () => {
+            const pageArray = Object.keys(currentPages);
+            let finishFlag = true;
+            let i = 0;
+            let currentPage;
+            while(finishFlag){
+                if(currentPages[pageArray[i]]){
+                    currentPage = pageArray[i];
+                    finishFlag = false;
+                };
+                i++;
+            };
+            console.log(currentPage);
+            switch (currentPage){
+                case "info":
+                    globalFunc.displayNone(htmlField.info);
+                    globalFunc.displayBlock(htmlField.contentGroup);
+                    globalFunc.changeCurrentPage("info", "contentGroup");
+                    break;
+                case "contentTable":
+                    globalFunc.displayNone(htmlField.contentTable);
+                    globalFunc.displayBlock(htmlField.contentGroup);
+                    globalFunc.changeCurrentPage("contentTable", "contentGroup");
+                    break;
+                case "content":
+                    globalFunc.displayNone(htmlField.content);
+                    globalFunc.displayBlock(htmlField.contentTable);
+                    globalFunc.changeCurrentPage("content", "contentTable");
+                    break;
+                default:
+                    swal('トップページです');
+            };
+        });
     },
 };
