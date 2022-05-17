@@ -172,3 +172,8 @@ a:hover{
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.content-detail-images{
+    height: 30vh;
+    width: 40vw;
+}

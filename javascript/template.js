@@ -107,12 +107,21 @@ const createContentPage = (contentJson) => {
     if(contentArray.length >= 4){
         // インデックス4移行が詳細に当たる
         // 3は画像専用
+        // 画像のファイル名のデート取得し[,]を区切り文字として配列に格納する
+        const contentImagesText = contentArray[3];
+        const contentImagesArray = contentImagesText.split(',');
         let contentDetailNode = document.getElementById('content-detail');
         for(let i = 4; i < contentArray.length; i++){
+            let j = i - 4;
             contentDetailNode.innerHTML += `
-                <div id="add-content class="card">
-                    <h6>詳細説明</h5>
-                    <p>${contentArray[i]}</p>
+                <div id="add-content" class="d-flex">
+                    <div class="col-6">
+                        <h6>詳細説明</h5>
+                        <p>${contentArray[i]}</p>
+                    </div>
+                    <div class="col-6">
+                        <img class="content-detail-images card-img-top figure-img img-fluid rounded" src="contentImages/${contentImagesArray[j]}"/>
+                    </div>
                 </div>
             `;
         };
