@@ -15,13 +15,14 @@ export const boxes = {
     inputBox: document.getElementById('input-box'),
     downloadBox: document.getElementById('download-box'),
     searchBox: document.getElementById('search-box'),
-}
+    selectedContent: document.getElementById('selected-content'),
+};
 
 export const isExport = {
     importantInfo: false,
     contentTable: false,
     content: false,
-}
+};
 
 export const tableParts = {
     tableHeaders: document.getElementById('table-headers'),
