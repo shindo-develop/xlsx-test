@@ -1,5 +1,5 @@
 # 今回学んだこと
-- XLSXの簡単な使い方(cdn, node.jsは使用していない)
+- XLSXの簡単な使い方(cdnを使用, node.jsは使用していない)
     ```js
     <!-- excel file を選択して -->
     let selectedFile;
