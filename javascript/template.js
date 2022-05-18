@@ -1,5 +1,4 @@
-import { globalFunc, htmlField, isExport, tableParts } from './config.js';
-// 受け取ったシート名を引数にとり、テンプレートを返す
+import { globalFunc, htmlField, isExport, tableParts } from "./config.js";
 
 export const createContentTable = (contentName, contentJson) => {
     let contentTitle = document.getElementById('content-name');
@@ -109,21 +108,34 @@ const createContentPage = (contentJson) => {
         // 3は画像専用
         // 画像のファイル名のデート取得し[,]を区切り文字として配列に格納する
         const contentImagesText = contentArray[3];
+        const contentDetailArray = contentArray.filter((_, index) => {
+            if(index >= 4)return true;
+        });
         const contentImagesArray = contentImagesText.split(',');
         let contentDetailNode = document.getElementById('content-detail');
-        for(let i = 4; i < contentArray.length; i++){
-            let j = i - 4;
-            contentDetailNode.innerHTML += `
+        for(let i = 0; i < contentArray.length; i++){
+            if(contentImagesArray[i] === undefined){
+                contentDetailNode.innerHTML += `
                 <div id="add-content" class="d-flex">
-                    <div class="col-6">
+                    <div class="col-12">
                         <h6>詳細説明</h5>
-                        <p>${contentArray[i]}</p>
-                    </div>
-                    <div class="col-6">
-                        <img class="content-detail-images card-img-top figure-img img-fluid rounded" src="contentImages/${contentImagesArray[j]}"/>
+                        <p>${contentDetailArray[i]}</p>
                     </div>
                 </div>
             `;
+            }else{
+                contentDetailNode.innerHTML += `
+                    <div id="add-content" class="d-flex">
+                        <div class="col-6">
+                            <h6>詳細説明</h5>
+                            <p>${contentDetailArray[i]}</p>
+                        </div>
+                        <div class="col-6">
+                            <img class="content-detail-images card-img-top figure-img img-fluid rounded" src="contentImages/${contentImagesArray[i]}"/>
+                        </div>
+                    </div>
+                `;
+            };
         };
         htmlField.content.appendChild(container);
     };
